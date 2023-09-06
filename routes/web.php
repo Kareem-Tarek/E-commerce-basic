@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 /*USE
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,9 +22,10 @@ use App\Http\Controllers\CategoryController;
 // Route::get('/about', [PageController::class ,'about'])->name('about');
 // Route::get('/services', [PageController::class ,'services'])->name('services');
 // Route::get('/portfolio', [PageController::class ,'portfolio'])->name('portfolio');
-Route::get('/', [PageController::class ,'index'])->name('index');
-Route::get('/contact', [PageController::class ,'contact'])->name('contact');
+Route::get('/', [PageController::class,'index'])->name('index');
+Route::get('/contact', [PageController::class,'contact'])->name('contact');
+Route::post('/contact-submit', [ContactController::class,'store'])->name('contacts.store');
 
-Route::resource('/categories', CategoryController::class );
+Route::resource('/categories', CategoryController::class);
 Route::resource('/products' , ProductController::class);
 

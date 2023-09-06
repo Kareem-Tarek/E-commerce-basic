@@ -22,6 +22,7 @@ class ProductFactory extends Factory
             'price'       => fake()->randomNumber(4 , true) ,
             'description' => fake()->sentence(24),
             'category_id' => fake()->numberBetween(1 , 3),
+            'updated_at'  => null,
         ];
     }
 }

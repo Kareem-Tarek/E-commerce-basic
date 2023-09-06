@@ -18,7 +18,8 @@ class CategoryFactory extends Factory
     {
         return [
             'title'       => fake()->title(),
-            'description' => fake()->sentence(24)
+            'description' => fake()->sentence(24),
+            'updated_at'  => null,
         ];
     }
 }

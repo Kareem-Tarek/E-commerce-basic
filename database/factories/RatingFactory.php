@@ -22,6 +22,7 @@ class RatingFactory extends Factory
             // 'customer_id'  => "" ,
             'product_id'   => fake()->numberBetween(1 , 10),
             // 'product_name' => "",
+            'updated_at'   => null,
         ];
     }
 }
