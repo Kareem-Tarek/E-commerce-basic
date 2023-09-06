@@ -26,4 +26,8 @@ class PageController extends Controller
     public function index(){
         return view('pages.index');
     }
+
+    public function contact(){
+        return view('pages.includes-all-static-pages.contact');
+    }
 }

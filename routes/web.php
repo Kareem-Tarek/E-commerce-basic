@@ -22,6 +22,7 @@ use App\Http\Controllers\CategoryController;
 // Route::get('/services', [PageController::class ,'services'])->name('services');
 // Route::get('/portfolio', [PageController::class ,'portfolio'])->name('portfolio');
 Route::get('/', [PageController::class ,'index'])->name('index');
+Route::get('/contact', [PageController::class ,'contact'])->name('contact');
 
 Route::resource('/categories', CategoryController::class );
 Route::resource('/products' , ProductController::class);

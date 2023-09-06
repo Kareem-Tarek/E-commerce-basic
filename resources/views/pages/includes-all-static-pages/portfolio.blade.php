@@ -1,3 +1,10 @@
+<style>
+.free-download-area{
+    border-top-style: solid;
+    border-top-color: rgb(255, 255, 255);
+}
+</style>
+
 <div id="portfolio">
     <div class="container-fluid p-0">
         <div class="row g-0">
@@ -59,7 +66,7 @@
     </div>
 </div>
 <!-- Call to action-->
-<section class="page-section bg-dark text-white">
+<section class="page-section bg-dark text-white free-download-area">
     <div class="container px-4 px-lg-5 text-center">
         <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
         <a class="btn btn-light btn-xl" href="https://startbootstrap.com/theme/creative/">Download Now!</a>

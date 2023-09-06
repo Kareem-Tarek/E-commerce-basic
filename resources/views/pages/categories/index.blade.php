@@ -3,7 +3,7 @@
 @section('main')
 <div class="container text-center my-5 p-5">
     <div class="row">
-        <h1>All Categories</h1><br/>
+        <h1 class="mb-5"><u>All Categories</u></h1><br/>
         @foreach ($categories as $category)
             <div class="my-2 col-lg-4 col-md-6 col-sm-12">
                 <div class="card">
