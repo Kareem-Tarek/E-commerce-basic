@@ -7,10 +7,9 @@
         @foreach ($categories as $category)
             <div class="my-2 col-lg-4 col-md-6 col-sm-12">
                 <div class="card">
-                    <h5 class="card-header shadow"> Price is {{$category->id}}</h5>
                     <div class="card-body">
                     <h5 class="card-title">
-                        Id {{$category->id}} <br> {{$category->title}}
+                        ID: {{$category->id}} <br> {{$category->title}}
                       </h5>
                       <p class="card-text">
                         {{$category->description ?? 'NULL'}}

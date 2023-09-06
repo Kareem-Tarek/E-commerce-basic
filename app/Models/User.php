@@ -25,6 +25,11 @@ class User extends Authenticatable
 
     protected $guarded = [];
 
+    public function rating(): \Illuminate\Database\Eloquent\Relations\hasMany
+    {
+        return $this->hasMany(Rating::class, 'customer_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

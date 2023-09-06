@@ -10,7 +10,7 @@
                     <h5 class="card-header shadow"> Price is {{$product->price}}</h5>
                     <div class="card-body">
                     <h5 class="card-title">
-                        Id {{$product->id}} <br> {{$product->title}}
+                        ID: {{$product->id}} <br> {{$product->title}}
                       </h5>
                       <p class="card-text">
                         {{$product->description ?? 'NULL'}}
@@ -19,7 +19,7 @@
                        </p>
                       <a href="{{'/products/' . $product->id }}"
                         class="btn btn-primary">show</a>
-                      <a href="{{/* route('products.edit',$product->id) */ '#'}}" class="btn btn-success">update</a>
+                      <a href="{{ /* route('products.edit',$product->id) */ "#" }}" class="btn btn-success">update</a>
                       <a href="#" class="btn btn-danger">delete</a>
                     </div>
                   </div>

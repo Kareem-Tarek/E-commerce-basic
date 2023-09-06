@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Http\Controllers\Controller;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class RatingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('id' , 'desc')
-        ->simplePaginate(5);
-        return view('pages.products.index' , compact('products'));
+        //
     }
 
     /**
@@ -44,28 +41,21 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Rating $rating)
     {
-        $product = Product::find($id);
-
-        if($product == null){
-            return '404';
-        }
-        else{
-            return view('pages.products.show' , compact('product'));
-        }
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Rating $rating)
     {
         //
     }
@@ -74,10 +64,10 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Rating $rating)
     {
         //
     }
@@ -85,10 +75,10 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Rating $rating)
     {
         //
     }

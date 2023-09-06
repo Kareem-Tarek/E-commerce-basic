@@ -1,6 +1,3 @@
-@extends('layouts.master')
-
-@section('main')
 <div id="portfolio">
     <div class="container-fluid p-0">
         <div class="row g-0">
@@ -68,4 +65,3 @@
         <a class="btn btn-light btn-xl" href="https://startbootstrap.com/theme/creative/">Download Now!</a>
     </div>
 </section>
-@endsection

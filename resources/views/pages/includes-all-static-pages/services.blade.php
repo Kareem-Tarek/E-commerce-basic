@@ -1,6 +1,3 @@
-@extends('layouts.master')
-
-@section('main')
 <section class="page-section" id="services">
     <div class="container px-4 px-lg-5">
         <h2 class="text-center mt-0">At Your Service</h2>
@@ -37,4 +34,3 @@
         </div>
     </div>
 </section>
-@endsection
