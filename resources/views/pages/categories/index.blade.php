@@ -1,10 +1,11 @@
 @extends('layouts.master')
 @section('title', 'Categories')
 @section('main')
-<div class="container text-center my-5 p-5">
+<div class="container text-center my-4 p-5">
     <div class="row">
         <h1 class="mb-5"><u>All Categories</u></h1><br/>
         <p>
+            {{-- start => Update Category --}}
             @if(session()->has('successful_category_title_updated'))
                 <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
                     {{ session()->get('successful_category_title_updated') }}
@@ -17,6 +18,13 @@
                 <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
                     {{ session()->get('successful_category_updated') }}
                 </div>
+            {{-- end => Update Category --}}
+            {{-- start => Delete Category --}}
+            @elseif(session()->has('category_deleted_successfully'))
+                <div class="alert alert-primary text-center mx-auto" style="width: 55%; margin-top: 3%;">
+                    {{ session()->get('category_deleted_successfully') }}
+                </div>
+            {{-- end => Delete Category --}}
             @endif
         </p>
         @foreach ($categories as $category)

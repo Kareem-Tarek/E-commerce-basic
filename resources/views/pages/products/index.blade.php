@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Products')
 @section('main')
-<div class="container text-center my-5 p-5">
+<div class="container text-center my-4 p-5">
     <div class="row">
         <h1 class="mb-5"><u>All Products</u></h1><br/>
         @foreach ($products as $product)

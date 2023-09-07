@@ -11,9 +11,9 @@ class Rating extends Model
 
     protected $guarded = [];
 
-    public function product(): \Illuminate\Database\Eloquent\Relations\belongsTo
+    public function product(): \Illuminate\Database\Eloquent\Relations\belongsToMany
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsToMany(Product::class);
     }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\belongsTo

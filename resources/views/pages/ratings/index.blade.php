@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Ratings')
 @section('main')
-<div class="container text-center my-5 p-5">
+<div class="container text-center my-4 p-5">
     <div class="row">
         <h1>All Products Ratings</h1><br/>
         @foreach ($ratings as $rating)
