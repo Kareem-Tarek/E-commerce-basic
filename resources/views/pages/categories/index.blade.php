@@ -39,8 +39,12 @@
                         <hr>
                         Created At {{$category->created_at}}
                     </p>
-                        <a href="{{ route('categories.edit',$category->id)}}" class="btn btn-success">Edit</a>
-                        <a href="#" class="btn btn-danger">delete</a>
+                        <form action="{{ route('categories.destroy',$category->id)}}" method="post">
+                            @csrf
+                            @method("DELETE")
+                            <a href="{{ route('categories.edit',$category->id)}}" class="btn btn-success btn-md p-1 text-white"><i class="fas fa-edit"></i> Edit</a>
+                            <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $category->title }}?');" type="submit" title="{{'Delete '."- ($category->title)"}}"><i class="fa-solid fa-trash"></i> Delete </button>
+                        </form>
                     </div>
                     </div>
             </div>
