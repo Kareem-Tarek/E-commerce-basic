@@ -3,7 +3,7 @@
 @section('main')
 <div class="container text-center my-4 p-5">
     <div class="row">
-        <h1 class="mb-5"><u>All Categories</u></h1><br/>
+        <h1 class="mb-3"><u>All Categories</u></h1><br/>
         <p>
             {{-- start => Update Category --}}
             @if(session()->has('successful_category_title_updated'))
