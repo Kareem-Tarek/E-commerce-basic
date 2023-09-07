@@ -27,5 +27,7 @@ Route::get('/contact', [PageController::class,'contact'])->name('contact');
 Route::post('/contact-submit', [ContactController::class,'store'])->name('contacts.store');
 
 Route::resource('/categories', CategoryController::class);
+Route::delete('/category/{id}', [CategoryController::class,'clear'])->name('categories.clear');
+
 Route::resource('/products' , ProductController::class);
 

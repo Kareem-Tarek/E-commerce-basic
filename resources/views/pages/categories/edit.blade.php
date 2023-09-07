@@ -27,7 +27,7 @@ value="{{$category->title}}">
 </span>
 @enderror
 </div>
-<input type="submit"value="Update Course" class="btn btn-success mt-3">
+<input type="submit"value="Update Category" class="btn btn-success mt-3">
 </form>
 </div>
 </section>
