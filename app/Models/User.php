@@ -27,7 +27,7 @@ class User extends Authenticatable
 
     public function rating(): \Illuminate\Database\Eloquent\Relations\hasMany
     {
-        return $this->hasMany(Rating::class, 'customer_id');
+        return $this->hasMany(Rating::class, 'customer_id', 'id');
     }
 
     /**

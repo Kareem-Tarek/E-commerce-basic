@@ -34,17 +34,17 @@
             @endif
         </p>
         @foreach ($categories as $category)
-            <div class="my-2 col-lg-4 col-md-6 col-sm-12">
+            <div class="my-2 col-lg-6 col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="card-title">
-                        ID: {{$category->id}} <br> {{$category->title}}
-                      </h5>
+                        <h5 class="card-title">
+                            ID: {{$category->id}} <br> {{$category->title}}
+                        </h5>
                       <p class="card-text">
                         {{$category->description ?? 'NULL'}}
                         <hr>
-                        Created At {{$category->created_at}}
-                    </p>
+                        Created At: {{$category->created_at}}
+                        </p>
                         <div class="d-flex justify-content-center align-items-center text-center">
                             <form action="{{ route('categories.destroy',$category->id)}}" method="post">
                                 @csrf
@@ -55,8 +55,9 @@
                             <form action="{{ route('categories.clear', $category->id)}}" method="post" class="p-1">
                                 @csrf
                                 @method("DELETE")
-                                <button class="btn btn-secondary btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete all the products within - {{ $category->title }}?');" type="submit"><i class="fas fa-trash-alt"></i> Clear Products</a>
+                                <button class="btn btn-secondary btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete all the products within - {{ $category->title }}?');" type="submit"><i class="fas fa-trash-alt"></i> Clear Products</button>
                             </form>
+                            <a href="{{ route('categories.show', $category->id) }}" class="btn btn-warning btn-md p-1 text-dark border-2 border-dark"><i class="far fa-clone"></i> Show Products</a>
                         </div>
                     </div>
                     </div>

@@ -49,9 +49,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $products = Product::where('category_id', $category->id)->simplePaginate(5);
+
+        return view('pages.categories.products', compact('category', 'products'));
     }
 
     /**

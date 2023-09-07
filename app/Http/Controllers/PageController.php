@@ -7,23 +7,7 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    // public function home(){
-    //     return view('pages.includes-all-static-pages.home');
-    // }
-
-    // public function about(){
-    //     return view('pages.about');
-    // }
-
-    // public function services(){
-    //     return view('pages.services');
-    // }
-
-    // public function portfolio(){
-    //     return view('pages.portfolio');
-    // }
-
-    public function index(){
+    public function index(){ //including all the website's static pages ("home", "about", "services" & "portfolio")
         return view('pages.index');
     }
 

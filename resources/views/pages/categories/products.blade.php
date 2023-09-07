@@ -1,9 +1,9 @@
 @extends('layouts.master')
-@section('title', 'Products')
+@section('title', "$category->title's Products")
 @section('main')
 <div class="container text-center my-4 p-5">
     <div class="row">
-        <h1 class="mb-3"><u>All Products</u></h1><br/>
+        <h1 class="mb-3"><u>All {{ "(".$category->title."'s)" }} Products</u></h1><br/>
         @foreach ($products as $product)
             <div class="my-2 col-lg-4 col-md-6 col-sm-12">
                 <div class="card">
@@ -17,8 +17,7 @@
                         <hr>
                         Created At: {{$product->created_at}}
                        </p>
-                      <a href="{{'/products/' . $product->id }}"
-                        class="btn btn-primary">show</a>
+                      <a href="{{'/products/' . $product->id }}" class="btn btn-primary">show</a>
                       <a href="{{ /* route('products.edit',$product->id) */ "#" }}" class="btn btn-success">Edit</a>
                       <a href="#" class="btn btn-danger">delete</a>
                     </div>
