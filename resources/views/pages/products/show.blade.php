@@ -1,4 +1,12 @@
-<div class="container text-center my-3 mb-2 ">
+@extends('layouts.master')
+@section('title', $product->title)
+<style>
+.single-product{
+    padding-top: 5%;
+}
+</style>
+@section('main')
+<div class="container text-center my-3 mb-2 single-product">
     <div class="bg-dark text-light w-75 mx-auto
         shadow rounded p-5">
         <h2> {{$product->title ?? 'NULL'}}</h2>
@@ -19,3 +27,5 @@
         </a>
     </div>
 </div>
+@endsection
+
