@@ -55,7 +55,7 @@
                             <form action="{{ route('categories.clear', $category->id)}}" method="post" class="p-1">
                                 @csrf
                                 @method("DELETE")
-                                <button class="btn btn-secondary btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete all the products within - {{ $category->title }}?');" type="submit"><i class="fas fa-trash-alt"></i> Clear</a>
+                                <button class="btn btn-secondary btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete all the products within - {{ $category->title }}?');" type="submit"><i class="fas fa-trash-alt"></i> Clear Products</a>
                             </form>
                         </div>
                     </div>

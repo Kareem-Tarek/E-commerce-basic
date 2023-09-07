@@ -13,7 +13,7 @@ class Rating extends Model
 
     public function product(): \Illuminate\Database\Eloquent\Relations\belongsToMany
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class, "product_id", "id");
     }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\belongsTo
