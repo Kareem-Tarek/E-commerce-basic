@@ -5,7 +5,15 @@
     <div class="row">
         <h1 class="mb-5"><u>All Categories</u></h1><br/>
         <p>
-            @if(session()->has('successful_category_updated'))
+            @if(session()->has('successful_category_title_updated'))
+                <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
+                    {{ session()->get('successful_category_title_updated') }}
+                </div>
+            @elseif(session()->has('successful_category_description_updated'))
+                <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
+                    {{ session()->get('successful_category_description_updated') }}
+                </div>
+            @elseif(session()->has('successful_category_updated'))
                 <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
                     {{ session()->get('successful_category_updated') }}
                 </div>

@@ -75,20 +75,35 @@ class CategoryController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        //Validte Category
+        //Validate Category
         $request->validate([
             'title'       => 'required|max:255',
             'description' => 'nullable|max:255',
         ]);
 
+        //Update Category
         $category_old = Category::find($id);
         $category     = Category::find($id);
 
         $category->title       = $request->title;
         $category->description =$request->description;
         $category->save();
-        // return redirect('/categories')->with("successful_category_updated", "Category with \"$category->id\" was Updated successfully.");
-        return redirect('/categories')->with("successful_category_updated", "Category \"$category_old->title\" was successfully updated to \"$category->title\".");
+
+        if($category_old->title != $category->title &&
+        $category_old->description == $category->description){
+            $message_title = "successful_category_title_updated";
+            $message_body  = "The Category with ID ($category->id) was successfully updated from \"$category_old->title\" to \"$category->title\".";
+        }
+        elseif(($category_old->description != $category->description &&
+        $category_old->title == $category->title)){
+            $message_title = "successful_category_description_updated";
+            $message_body  = "The Category with ID ($category->id) description was updated successfully.";
+        }
+        else{
+            $message_title = "successful_category_updated";
+            $message_body  = "The Category with ID ($category->id) all attributes was updated successfully.";
+        }
+        return redirect('/categories')->with($message_title, $message_body);
     }
 
     /**

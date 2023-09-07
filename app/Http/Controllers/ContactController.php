@@ -8,6 +8,7 @@ use App\Models\Contact;
 class ContactController extends Controller
 {
     public function store(Request $request){
+        //Validate Contact
         $request->validate([
             'name'    => 'required|max:255',
             'email'   => 'required|email',
@@ -16,6 +17,7 @@ class ContactController extends Controller
             'message' => 'required|max:1020',
         ]);
 
+        //Store Contact
         $contact             = new Contact;
         $contact->name       = $request->name;
         $contact->email      = $request->email;
