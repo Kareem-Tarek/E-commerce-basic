@@ -113,6 +113,19 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
+
+    public function clear($id)
+    {
+        $category = Category::findOrFail($id);
+        $products = Product::where('category_id', $category->id)->get();
+        foreach($products as $product){
+            $product->delete();
+        }
+
+        return redirect('/categories')
+            ->with('products_in_category_deleted_successfully', "All the products for category ($category->title) were successfully deleted!");
+    }
+
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
