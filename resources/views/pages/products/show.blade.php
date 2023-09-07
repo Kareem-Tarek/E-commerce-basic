@@ -19,7 +19,7 @@
         </p>
         <hr>
         <div class="py-4">
-            <a href="#" class="btn btn-success mx-1">Update</a>
+            <a href="#" class="btn btn-success mx-1">Edit</a>
             <a href="#" class="btn btn-danger mx-1">Delete</a>
         </div>
         <a href="{{ route('products.index') }}" class="btn btn-info">

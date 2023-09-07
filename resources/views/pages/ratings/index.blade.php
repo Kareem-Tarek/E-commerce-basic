@@ -31,7 +31,7 @@
                        </p>
                       <a href="{{/* route('ratings.show') , $rating->id */ '#'}}"
                         class="btn btn-primary">show</a>
-                      <a href="{{/* route('ratings.edit',$rating->id) */ '#'}}" class="btn btn-success">update</a>
+                      {{-- <a href="{{/* route('ratings.edit',$rating->id) */ '#'}}" class="btn btn-success"></a> --}}
                       <a href="#" class="btn btn-danger">delete</a>
                     </div>
                   </div>

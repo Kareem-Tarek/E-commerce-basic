@@ -59,9 +59,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(int $id)
     {
         //
+        $category = Category::find($id);
+        return view('pages.categories.edit' , compact('category'));
     }
 
     /**
@@ -71,9 +73,22 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, int $id)
     {
-        //
+        //Validte Category
+        $request->validate([
+            'title'       => 'required|max:255',
+            'description' => 'nullable|max:255',
+        ]);
+
+        $category_old = Category::find($id);
+        $category     = Category::find($id);
+
+        $category->title       = $request->title;
+        $category->description =$request->description;
+        $category->save();
+        // return redirect('/categories')->with("successful_category_updated", "Category with \"$category->id\" was Updated successfully.");
+        return redirect('/categories')->with("successful_category_updated", "Category \"$category_old->title\" was successfully updated to \"$category->title\".");
     }
 
     /**

@@ -10,5 +10,15 @@
 
 
 <footer class="bg-light py-5">
-    <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - Mr. Hatab &dash; KareemDEV <span class="heart">&hearts;</span></div></div>
+    <div class="container px-4 px-md-5">
+        <div class="small text-center text-muted">Copyright All Rigth Reserved &copy; 2023 - Mr. Hatab &dash; KareemDEV <span class="heart">&hearts;</span>
+        </div>
+        <div class="icon text-center mt-2 p-2 bg-dark mx-auto rounded  w-50" >
+            <a href="#"><i class="fa-brands fa-facebook  fs-4 p-2" ></i> </a>
+            <a href="#"><i class="fa-brands fa-github fs-4 p-2"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin fs-4 p-2"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram fs-4 p-2"></i></a>
+        </div>
+    </div>
 </footer>
+
