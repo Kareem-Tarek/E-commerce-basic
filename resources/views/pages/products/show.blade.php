@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', $product->title)
+@section('title', "$product->title")
 <style>
 .single-product{
     padding-top: 5%;
@@ -22,9 +22,8 @@
             <a href="#" class="btn btn-success mx-1">Edit</a>
             <a href="#" class="btn btn-danger mx-1">Delete</a>
         </div>
-        <a href="{{ route('products.index') }}" class="btn btn-info">
-            Return to Products
-        </a>
+        <a href="{{ route('products.index') }}" class="btn btn-info">Return to Products</a>
+        <a href="{{ route('categories.show', $product->category->id) }}" class="btn btn-warning">Show Related Products</a>
     </div>
 </div>
 @endsection

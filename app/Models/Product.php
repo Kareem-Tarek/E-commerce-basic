@@ -14,11 +14,11 @@ class Product extends Model
 
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->belongsTo(Category::class);
     }
 
     public function rating(): \Illuminate\Database\Eloquent\Relations\belongsToMany
     {
-        return $this->belongsToMany(Rating::class, 'product_id');
+        return $this->belongsToMany(Rating::class);
     }
 }

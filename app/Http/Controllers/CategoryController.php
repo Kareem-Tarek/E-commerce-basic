@@ -51,10 +51,10 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::findOrFail($id);
-        $products = Product::where('category_id', $category->id)->simplePaginate(5);
+        $category = Category::find($id);
+        // $products = Product::where('category_id', $category->id)->simplePaginate(10);
 
-        return view('pages.categories.products', compact('category', 'products'));
+        return view('pages.categories.products', compact('category'/*, 'products'*/));
     }
 
     /**
@@ -98,8 +98,8 @@ class CategoryController extends Controller
             $message_title = "successful_category_title_updated";
             $message_body  = "The Category with ID ($category->id) was successfully updated from \"$category_old->title\" to \"$category->title\".";
         }
-        elseif(($category_old->description != $category->description &&
-        $category_old->title == $category->title)){
+        elseif($category_old->description != $category->description &&
+        $category_old->title == $category->title){
             $message_title = "successful_category_description_updated";
             $message_body  = "The Category with ID ($category->id) description was updated successfully.";
         }
@@ -120,10 +120,20 @@ class CategoryController extends Controller
     public function clear($id)
     {
         $category = Category::findOrFail($id);
-        $products = Product::where('category_id', $category->id)->get();
-        foreach($products as $product){
-            $product->delete();
-        }
+
+        // if($category->product()->count() == 0){
+        //     return back();
+        // }
+        // else{
+        //     $category->product()->delete();
+        // }
+
+        $category->product()->delete();
+
+        // $products = Product::where('category_id', $category->id)->first();
+        // foreach($products as $product){
+        //     $product->delete();
+        // }
 
         return redirect('/categories')
             ->with('products_in_category_deleted_successfully', "All the products for category ($category->title) were successfully deleted!");
@@ -132,10 +142,12 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
-        $products = Product::where('category_id', $category->id)->get();
-        foreach($products as $product){
-            $product->delete();
-        }
+        // $products = Product::where('category_id', $category->id)->get();
+        // foreach($products as $product){
+        //     $product->delete();
+        // }
+        // $category->delete();
+        // $category->product()->delete();
         $category->delete();
 
         return redirect('/categories')
