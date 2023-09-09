@@ -51,6 +51,9 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::find($id);
+        if($category == null){
+            return view('pages.includes-all-static-pages.custom-404', compact('category'));
+        }
         // $products = \App\Models\Product::where('category_id', $category->id)->simplePaginate(10);
 
         return view('pages.categories.products', compact('category'/*, 'products'*/));
