@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Models\Product;
 
 class CategoryController extends Controller
 {
@@ -52,7 +51,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::find($id);
-        // $products = Product::where('category_id', $category->id)->simplePaginate(10);
+        // $products = \App\Models\Product::where('category_id', $category->id)->simplePaginate(10);
 
         return view('pages.categories.products', compact('category'/*, 'products'*/));
     }
@@ -119,21 +118,25 @@ class CategoryController extends Controller
 
     public function clear($id)
     {
-        $category = Category::findOrFail($id);
+        // Method (1) -> poor practice
+            // $category = Category::findOrFail($id);
+            // $products = \App\Models\Product::where('category_id', $category->id)->first();
+            // foreach($products as $product){
+            //     $product->delete();
+            // }
 
-        // if($category->product()->count() == 0){
-        //     return back();
-        // }
-        // else{
-        //     $category->product()->delete();
-        // }
+        // Method (2) -> good practice
+            // $category = Category::findOrFail($id);
+            // if($category->product()->count() == 0){
+            //     return back();
+            // }
+            // else{
+            //     $category->product()->delete();
+            // }
 
-        $category->product()->delete();
-
-        // $products = Product::where('category_id', $category->id)->first();
-        // foreach($products as $product){
-        //     $product->delete();
-        // }
+        // Method (3) -> best practice
+            $category = Category::findOrFail($id);
+            $category->product()->delete();
 
         return redirect('/categories')
             ->with('products_in_category_deleted_successfully', "All the products for category ($category->title) were successfully deleted!");
@@ -141,14 +144,22 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        // $products = Product::where('category_id', $category->id)->get();
-        // foreach($products as $product){
-        //     $product->delete();
-        // }
-        // $category->delete();
-        // $category->product()->delete();
-        $category->delete();
+        // Method (1) -> poor practice
+            // $category = Category::findOrFail($id);
+            // $products = \App\Models\Product::where('category_id', $category->id)->get();
+            // foreach($products as $product){
+            //     $product->delete();
+            // }
+            // $category->delete();
+
+        // Method (2) -> good practice
+            // $category = Category::findOrFail($id);
+            // $category->product()->delete();
+            // $category->delete();
+
+        // Method (3) -> best practice (in this case when the category is deleted, then its all products will be deleted because of the delete on cascade in products migration)
+            $category = Category::findOrFail($id);
+            $category->delete();
 
         return redirect('/categories')
             ->with('category_deleted_successfully', "The category ($category->title) with ID ($category->id) was successfully deleted!");

@@ -4,7 +4,7 @@
 <div class="container text-center my-4 p-5">
     <div class="row">
         <h1 class="mb-3"><u>All {{ "(".$category->title."'s)" }} Products</u></h1><br/>
-        @foreach ($category->product as $product)
+        @forelse ($category->product as $product)
             <div class="my-2 col-lg-4 col-md-6 col-sm-12">
                 <div class="card">
                     <h5 class="card-header shadow"> Price is {{$product->price}}</h5>
@@ -23,10 +23,14 @@
                     </div>
                   </div>
             </div>
-        @endforeach
-        <div class="my-4">
-            {{-- {{$category->product->links()}} --}}
-        </div>
+        @empty
+            <div class="container mt-lg-4 d-flex justify-content-center text-center w-100">
+                <span class="alert alert-danger p-2 rounded text-dark">There are no products in this category yet.</span>
+            </div>
+        @endforelse
+        {{-- <div class="my-4">
+            {{$category->product->links()}}
+        </div> --}}
     </div>
 </div>
 @endsection

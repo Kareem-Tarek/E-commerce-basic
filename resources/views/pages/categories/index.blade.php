@@ -58,8 +58,8 @@
                                     @method("DELETE")
                                     <button class="btn btn-secondary btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete all the products within - {{ $category->title }}?');" type="submit"><i class="fas fa-trash-alt"></i> Clear Products</button>
                                 </form>
+                                <a href="{{ route('categories.show', $category->id) }}" class="btn btn-warning btn-md p-1 text-dark border-2 border-dark"><i class="far fa-clone"></i> Show Products</a>
                             @endif
-                            <a href="{{ route('categories.show', $category->id) }}" class="btn btn-warning btn-md p-1 text-dark border-2 border-dark"><i class="far fa-clone"></i> Show Products</a>
                         </div>
                     </div>
                     </div>

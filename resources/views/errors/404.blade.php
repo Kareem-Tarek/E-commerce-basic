@@ -1,1 +1,1 @@
-<h1>custom 404</h1>
+<h1>Custom 404</h1>

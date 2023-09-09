@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->float('price');
-            // $table->unsignedBigInteger('category_id');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
