@@ -52,7 +52,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         if($category == null){
-            return view('pages.includes-all-static-pages.custom-404', compact('category'));
+            return view('pages.categories.categories-404', compact('category'));
         }
         // $products = \App\Models\Product::where('category_id', $category->id)->simplePaginate(10);
 
@@ -69,6 +69,9 @@ class CategoryController extends Controller
     {
         //
         $category = Category::find($id);
+        if($category == null){
+            return view('pages.categories.categories-404', compact('category'));
+        }
         return view('pages.categories.edit' , compact('category'));
     }
 
@@ -98,18 +101,26 @@ class CategoryController extends Controller
         if($category_old->title != $category->title &&
         $category_old->description == $category->description){
             $message_title = "successful_category_title_updated";
-            $message_body  = "The Category with ID ($category->id) was successfully updated from \"$category_old->title\" to \"$category->title\".";
+            $message_body  = "The Category ($category->id. $category_old->title) was successfully updated from \"$category_old->title\" to \"$category->title\".";
+            return redirect('/categories')->with($message_title, $message_body);
         }
         elseif($category_old->description != $category->description &&
         $category_old->title == $category->title){
             $message_title = "successful_category_description_updated";
-            $message_body  = "The Category with ID ($category->id) description was updated successfully.";
+            $message_body  = "The Category ($category->id. $category->title) description was updated successfully.";
+            return redirect('/categories')->with($message_title, $message_body);
+        }
+        elseif($category_old->description != $category->description &&
+        $category_old->title != $category->title){
+            $message_title = "successful_category_all_attributes_updated";
+            $message_body  = "The Category ($category->id. $category_old->title) all attributes was updated successfully.";
+            return redirect('/categories')->with($message_title, $message_body);
         }
         else{
-            $message_title = "successful_category_updated";
-            $message_body  = "The Category with ID ($category->id) all attributes was updated successfully.";
+            $message_title = "category_same_all_attributes";
+            $message_body  = "The Category ($category->id. $category->title) all attributes' values remains the same values.";
+            return redirect('/categories')->with($message_title, $message_body);
         }
-        return redirect('/categories')->with($message_title, $message_body);
     }
 
     /**

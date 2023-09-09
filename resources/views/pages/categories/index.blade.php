@@ -5,8 +5,14 @@
     <div class="row">
         <h1 class="mb-3"><u>All Categories</u></h1><br/>
         <p>
+            {{-- start => Same Category Attributes --}}
+            @if(session()->has('category_same_all_attributes'))
+                <div class="alert alert-warning text-center mx-auto" style="width: 55%; margin-top: 3%;">
+                    {{ session()->get('category_same_all_attributes') }}
+                </div>
+            {{-- end => Same Category Attributes --}}
             {{-- start => Update Category --}}
-            @if(session()->has('successful_category_title_updated'))
+            @elseif(session()->has('successful_category_title_updated'))
                 <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
                     {{ session()->get('successful_category_title_updated') }}
                 </div>
@@ -14,9 +20,9 @@
                 <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
                     {{ session()->get('successful_category_description_updated') }}
                 </div>
-            @elseif(session()->has('successful_category_updated'))
+            @elseif(session()->has('successful_category_all_attributes_updated'))
                 <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
-                    {{ session()->get('successful_category_updated') }}
+                    {{ session()->get('successful_category_all_attributes_updated') }}
                 </div>
             {{-- end => Update Category --}}
             {{-- start => Clear Category's Products --}}
