@@ -18,9 +18,10 @@ use App\Http\Controllers\ProductApiController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 //Get All Products
 Route::get('/products', [ProductApiController::class ,'getproducts'] );
 //get Single Product
 Route::get('/products/{id}' , [ProductApiController::class , 'getProduct']);
 //Save New Api Product
-Route::post('/products' , [ProductApiController::class , 'store']);
+Route::post('/products' , [ProductApiController::class , 'update']);

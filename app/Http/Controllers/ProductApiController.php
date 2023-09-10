@@ -12,20 +12,21 @@ class ProductApiController extends Controller
         }
 
         //Get Single Product
+
         public function getProduct($id){
             //Find Product By Id
             $product = Product::find($id);
             return $product;
         }
             //Save New Product
-            public function store(Request $request){
+            public function update(Request $request){
                 //            Validate Data
                 $request->validate([
                     'title'       => 'required|max255',
-                    'price'       => 'nullabel|max255',
-                    'description' => 'nullabel|max255'
+                    'price'       => 'nullable|max255',
+                    'description' => 'nullable|max255'
                 ]);
                     //Create All Data In Product Api
-                    Product::create($request->all());
+                Product::create($request->all());
             }
 }
