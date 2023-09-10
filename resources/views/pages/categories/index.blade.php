@@ -55,16 +55,16 @@
                             <form action="{{ route('categories.destroy',$category->id)}}" method="post">
                                 @csrf
                                 @method("DELETE")
-                                <a href="{{ route('categories.edit', $category->id)}}" class="btn btn-success btn-md p-1 text-white"><i class="fas fa-edit"></i> Edit</a>
-                                <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $category->title }}?');" type="submit" title="{{'Delete '."- ($category->title)"}}"><i class="fa-solid fa-trash"></i> Delete </button>
+                                <a href="{{ route('categories.edit', $category->id)}}" class="btn btn-success btn-md p-1 border-2 border-dark text-white"><i class="fas fa-edit p-1"></i> Edit</a>
+                                <button class="btn btn-danger btn-md p-1 border-2 border-dark text-white" onclick="return confirm('Are you sure that you want to delete - {{ $category->title }}?');" type="submit" title="{{'Delete '."- ($category->title)"}}"><i class="fa-solid fa-trash-alt p-1"></i> Delete </button>
                             </form>
                             @if($category->productCount() != 0)
                                 <form action="{{ route('categories.clear', $category->id)}}" method="post" class="p-1">
                                     @csrf
                                     @method("DELETE")
-                                    <button class="btn btn-secondary btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete all the products within - {{ $category->title }}?');" type="submit"><i class="fas fa-trash-alt"></i> Clear Products</button>
+                                    <button class="btn btn-secondary btn-md p-1 border-2 border-dark text-white" onclick="return confirm('Are you sure that you want to delete all the products within - {{ $category->title }}?');" type="submit"><i class="fa-solid fa-broom p-1"></i> Clear Products</button>
                                 </form>
-                                <a href="{{ route('categories.show', $category->id) }}" class="btn btn-warning btn-md p-1 text-dark border-2 border-dark"><i class="far fa-clone"></i> Show Products</a>
+                                <a href="{{ route('categories.show', $category->id) }}" class="btn btn-warning btn-md p-1 text-dark border-2 border-dark"><i class="far fa-clone p-1"></i> Show Products</a>
                             @endif
                         </div>
                     </div>

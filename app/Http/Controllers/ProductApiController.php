@@ -25,8 +25,8 @@ class ProductApiController extends Controller
                     'title'              => 'required|string|max:255',
                     'price'              => 'required|numeric',
                     'description'        => 'nullable|string|max:1020',
-                    'available_quantity' => 'required|numeric',
-                    'category_id'        => 'required|numeric'
+                    'available_quantity' => 'required|integer',
+                    'category_id'        => 'required|integer'
                 ]);
                     //Create All Data In Product Api
                 Product::create($request->all());

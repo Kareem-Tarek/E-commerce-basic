@@ -62,7 +62,6 @@ class ProductController extends Controller
      */
     public function edit(int $id)
     {
-        //
         $product    = Product::find($id);
         $categories = Category::all();
     return view('pages.products.edit' , compact('product', 'categories'));
@@ -83,8 +82,8 @@ class ProductController extends Controller
                 'title'              => 'required|string|max:255',
                 'price'              => 'required|numeric',
                 'description'        => 'nullable|string|max:1020',
-                'available_quantity' => 'required|numeric',
-                'category_id'        => 'required|numeric',
+                'available_quantity' => 'required|integer',
+                'category_id'        => 'required|integer',
             ]);
             //Update Products
             $product_old = Product::find($id);
@@ -100,19 +99,20 @@ class ProductController extends Controller
             if($product_old->title    != $product->title &&
             $product_old->price       == $product->price &&
             $product_old->description == $product->description){
-                $message_title ="Successful_product_title_updated";
-                $message_body  ="the product with Id($product->id)  Was Successfully update from \"$product_old->title\".";
+                $message_title = "successful_product_title_updated";
+                $message_body  = "The product ($product->id. $product->title) was successfully update from \"$product_old->title\".";
             }
-            elseif(($product_old->dsecription != $product->description &&
+            elseif(($product_old->description != $product->description &&
             $product_old->title  == $product->title)){
-                $messagr_title ="Successfully_category_description_updated";
-                $message_body  ="the product  With ID ($product->id0) description was updated successfully.";
+                $message_title = "successfully_category_description_updated";
+                $message_body  = "The product ($product->id. $product->title) description was updated successfully.";
             }
             else{
-                $message_title = "Successful_product_update";
-                $message_body  = "The Products With ID ($product->id) All Attributes update was Successfully";
+                $message_title = "successful_product_update";
+                $message_body  = "The product ($product->id. $product->title) All Attributes update was successfully";
             }
-                return redirect('/products')->with($message_title, $message_body);
+                return redirect()->route('products.index');
+                // ->with($message_title, $message_body);
         }
     /**
      * Remove the specified resource from storage.
@@ -123,9 +123,10 @@ class ProductController extends Controller
     public function destroy(int $id)
     {
         //
-        $product = Product::findOrfail($id);
+        $product = Product::findOrFail($id);
         $product->delete();
-        return redirect('/products')->with('Product_deleted_successfully ' , "the product($product->title) with Id($product->id) was successfully deleted!");
+        return redirect('/products')
+            ->with('deleted_product_message', "The product ($product->id. $product->title) has been deleted & moved to trash successfully deleted.");
 
     }
 
@@ -142,13 +143,13 @@ class ProductController extends Controller
         Product::withTrashed()->find($id)->restore();
         $product = Product::findOrFail($id);
         return redirect()->route('products.delete')
-            ->with('restored_product_message', "($product->name) has been Restored successfully.");
+            ->with('restored_product_message', "The product ($product->title) has been Restored successfully.");
     }
 
     public function forceDelete($id)
     {
         Product::where('id', $id)->forceDelete();
-        return redirect()->route('products.forceDelete')
+        return redirect()->route('products.delete')
             ->with('permanent_deleted_product_message', "The product has been permanently deleted successfully.");
     }
 }

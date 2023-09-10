@@ -8,7 +8,12 @@
 @csrf
 @method('PUT')
 <div class="form-group my-3">
-    <label for="title">Title</label>
+    <label class="d-flex flex-start" for="id">ID</label>
+    <input type="text" class="form-control" value="{{$product->id}}" disabled>
+</div>
+
+<div class="form-group my-3">
+    <label class="d-flex flex-start" for="title">Title <span class="text-danger">*</span></label>
     <input type="text"name="title" class="form-control @error('title') is-invalid @enderror" id="title"
     value="{{$product->title ?? old('title')}}">
     @error('title')
@@ -19,7 +24,7 @@
 </div>
 
 <div class="form-group my-3">
-    <label for="price">Price</label>
+    <label class="d-flex flex-start" for="price">Price <span class="text-danger">*</span></label>
     <input value="{{ $product->price ?? old('price') }}" type="number" name="price" id="price" class="form-control @error('price') is-invalid @enderror">
     @error('price')
     <span class="invalid-feedback" role="alert">
@@ -29,7 +34,7 @@
 </div>
 
 <div class="form-group my-3">
-    <label for="description">Description</label>
+    <label class="d-flex flex-start" for="description">Description</label>
     <textarea name="description"  style="height: 200px" id="description"  class="form-control @error('description') is-invalid @enderror">
     {{$product->description ?? ''}}
     </textarea>
@@ -41,7 +46,7 @@
 </div>
 
 <div class="form-group my-3">
-    <label for="title">Available Quantity</label>
+    <label class="d-flex flex-start" for="title">Available Quantity <span class="text-danger">*</span></label>
     <input type="number" name="available_quantity" class="form-control @error('available_quantity') is-invalid @enderror" id="available_quantity"
     value="{{$product->available_quantity ?? old('available_quantity')}}">
     @error('available_quantity')
@@ -52,7 +57,7 @@
 </div>
 
 <div>
-    <label for="title">Category</label>
+    <label class="d-flex flex-start" for="title">Category <span class="text-danger">*</span></label>
     <select name="category_id" class="form-control select border-1 border-dark mb-2 @error('category_id') is-invalid @enderror" value="{{$category->id ?? old('category_id')}}">
         <option value="" selected> ---------- Select a Category ---------- </option>
         {{-- @inject('categories', 'App\Models\Category') --}}
@@ -61,7 +66,6 @@
                 ({{ ucfirst($category->title) }})
             </option>
             @empty
-            No Categories Found!
         @endforelse
     </select>
     @error('category_id')

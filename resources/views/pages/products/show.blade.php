@@ -18,12 +18,18 @@
             {{$product->description ?? 'NULL'}}
         </p>
         <hr>
-        <div class="py-4">
-            <a href="#" class="btn btn-success mx-1">Edit</a>
-            <a href="#" class="btn btn-danger mx-1">Delete</a>
+        <div class="">
+            <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-success mx-1"><i class="fa-solid fa-edit p-1"></i> Edit</a>
+                <button class="btn btn-danger mx-1" type="submit"><i class="fa-solid fa-trash-alt p-1"></i> Delete</button>
+                <p class="mt-4">
+                    <a href="{{ route('products.index') }}" class="btn btn-info"><i class="fa-solid fa-arrow-left p-1"></i> Return to Products</a>
+                    <a href="{{ route('categories.show', $product->category->id) }}" class="btn btn-warning"><i class="fa-solid fa-network-wired p-1"></i> Show Related Products</a>
+                </p>
+            </form>
         </div>
-        <a href="{{ route('products.index') }}" class="btn btn-info">Return to Products</a>
-        <a href="{{ route('categories.show', $product->category->id) }}" class="btn btn-warning">Show Related Products</a>
     </div>
 </div>
 @endsection
