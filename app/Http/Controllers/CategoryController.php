@@ -134,14 +134,14 @@ class CategoryController extends Controller
     {
         // Method (1) -> poor practice
             // $category = Category::findOrFail($id);
-            // $products = \App\Models\Product::where('category_id', $category->id)->first();
+            // $products = \App\Models\Product::where('category_id', $category->id)->get();
             // foreach($products as $product){
             //     $product->delete();
             // }
 
         // Method (2) -> good practice
             // $category = Category::findOrFail($id);
-            // if($category->product()->count() == 0){
+            // if($category->productCount() == 0){
             //     return back();
             // }
             // else{

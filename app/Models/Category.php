@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\hasMany; //custom
 
 class Category extends Model
 {
@@ -11,7 +12,7 @@ class Category extends Model
 
     protected $guarded = [];
 
-    public function product(): \Illuminate\Database\Eloquent\Relations\hasMany
+    public function product()
     {
         return $this->hasMany(Product::class);
     }

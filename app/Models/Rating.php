@@ -13,7 +13,7 @@ class Rating extends Model
 
     public function product(): \Illuminate\Database\Eloquent\Relations\belongsTo
     {
-        return $this->belongsTo(Product::class, "product_id", "id");
+        return $this->belongsTo(Product::class);
     }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\belongsTo
