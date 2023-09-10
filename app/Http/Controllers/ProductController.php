@@ -68,8 +68,8 @@ class ProductController extends Controller
     public function edit(int $id)
     {
         //
-        $Product = Product::find($id);
-        return view('pages.products.edit');
+        $product = Product::find($id);
+        return view('pages.products.edit' , compact('product'));
 
     }
 
@@ -106,21 +106,26 @@ class ProductController extends Controller
             elseif(($product_old->dsecription != $product->description &&
             $product_old->title  == $product->title)){
                 $messagr_title ="Successfully_category_description_updated";
-                $message_body  ="the product  With ID ($product->id0) description was updated successfully."
+                $message_body  ="the product  With ID ($product->id0) description was updated successfully.";
             }
             else{
-                $message_title = "Successful_"
+                $message_title = "Successful_product_update";
+                $message_body  = "The Products With ID ($product->id) All Attributes update was Successfully";
             }
+                return redirect('/products')->with($message_title, $message_body);
         }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(int $id)
     {
         //
+        $product = Product::findOrfail($id);
+        $product->delete();
+        return redirect('/products')->with('Product_deleted_successfully ' , "the product($product->title) with Id($product->id) was successfully deleted!");
+        
     }
 }

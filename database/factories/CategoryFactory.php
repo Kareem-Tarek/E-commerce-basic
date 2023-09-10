@@ -17,7 +17,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'title'       => fake()->title(),
+            'title'       => fake()->unique()->title(),
             'description' => fake()->sentence(24),
             'updated_at'  => null,
         ];
