@@ -9,6 +9,7 @@ class RatingController extends Controller
 {
     public function store(){
         //
+        
     }
 
 }
