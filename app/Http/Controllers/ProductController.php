@@ -89,9 +89,11 @@ class ProductController extends Controller
             $product_old = Product::find($id);
             $product     = Product::find($id);
 
-            $product->title       =$request->title;
-            $product->price       =$request->price;
-            $product->description =$request->description;
+            $product->title              = $request->title;
+            $product->price              = $request->price;
+            $product->description        = $request->description;
+            $product->available_quantity = $request->available_quantity;
+            $product->category_id        = $request->category_id;
             $product->save();
 
             if($product_old->title    != $product->title &&
