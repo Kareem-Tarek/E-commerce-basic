@@ -83,6 +83,7 @@ class ProductController extends Controller
                 'price'              => 'required|numeric',
                 'description'        => 'nullable|string|max:1020',
                 'available_quantity' => 'required|numeric',
+                'category_id'        => 'required|numeric',
             ]);
             //Update Products
             $product_old = Product::find($id);
