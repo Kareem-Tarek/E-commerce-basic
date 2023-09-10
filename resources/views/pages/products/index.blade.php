@@ -9,6 +9,10 @@
                 <div class="alert alert-primary text-center mx-auto" style="width: 90%; margin-top: 3%;">
                     {{ session()->get('deleted_product_message') }} <a href="{{ route('products.delete') }}">Check Trashed Products</a>
                 </div>
+            @elseif(session()->has('restored_product_message'))
+                <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
+                    {{ session()->get('restored_product_message') }}
+                </div>
             @endif
         </p>
         @foreach ($products as $product)

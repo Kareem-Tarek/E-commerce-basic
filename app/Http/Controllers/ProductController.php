@@ -142,8 +142,8 @@ class ProductController extends Controller
     {
         Product::withTrashed()->find($id)->restore();
         $product = Product::findOrFail($id);
-        return redirect()->route('products.delete')
-            ->with('restored_product_message', "The product ($product->title) has been Restored successfully.");
+        return redirect()->route('products.index')
+            ->with('restored_product_message', "The product ($product->id. $product->title) has been Restored successfully.");
     }
 
     public function forceDelete($id)
