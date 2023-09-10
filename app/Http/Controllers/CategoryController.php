@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Models\Product;
 
 class CategoryController extends Controller
 {
@@ -49,9 +48,15 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        $category = Category::find($id);
+        if($category == null){
+            return view('pages.categories.categories-404', compact('category'));
+        }
+        // $products = \App\Models\Product::where('category_id', $category->id)->simplePaginate(10);
+
+        return view('pages.categories.products', compact('category'/*, 'products'*/));
     }
 
     /**
@@ -64,6 +69,9 @@ class CategoryController extends Controller
     {
         //
         $category = Category::find($id);
+        if($category == null){
+            return view('pages.categories.categories-404', compact('category'));
+        }
         return view('pages.categories.edit' , compact('category'));
     }
 
@@ -93,18 +101,26 @@ class CategoryController extends Controller
         if($category_old->title != $category->title &&
         $category_old->description == $category->description){
             $message_title = "successful_category_title_updated";
-            $message_body  = "The Category with ID ($category->id) was successfully updated from \"$category_old->title\" to \"$category->title\".";
+            $message_body  = "The Category ($category->id. $category_old->title) was successfully updated from \"$category_old->title\" to \"$category->title\".";
+            return redirect('/categories')->with($message_title, $message_body);
         }
-        elseif(($category_old->description != $category->description &&
-        $category_old->title == $category->title)){
+        elseif($category_old->description != $category->description &&
+        $category_old->title == $category->title){
             $message_title = "successful_category_description_updated";
-            $message_body  = "The Category with ID ($category->id) description was updated successfully.";
+            $message_body  = "The Category ($category->id. $category->title) description was updated successfully.";
+            return redirect('/categories')->with($message_title, $message_body);
+        }
+        elseif($category_old->description != $category->description &&
+        $category_old->title != $category->title){
+            $message_title = "successful_category_all_attributes_updated";
+            $message_body  = "The Category ($category->id. $category_old->title) all attributes was updated successfully.";
+            return redirect('/categories')->with($message_title, $message_body);
         }
         else{
-            $message_title = "successful_category_updated";
-            $message_body  = "The Category with ID ($category->id) all attributes was updated successfully.";
+            $message_title = "category_same_all_attributes";
+            $message_body  = "The Category ($category->id. $category->title) all attributes' values remains the same values.";
+            return redirect('/categories')->with($message_title, $message_body);
         }
-        return redirect('/categories')->with($message_title, $message_body);
     }
 
     /**
@@ -116,11 +132,25 @@ class CategoryController extends Controller
 
     public function clear($id)
     {
-        $category = Category::findOrFail($id);
-        $products = Product::where('category_id', $category->id)->get();
-        foreach($products as $product){
-            $product->delete();
-        }
+        // Method (1) -> poor practice
+            // $category = Category::findOrFail($id);
+            // $products = \App\Models\Product::where('category_id', $category->id)->first();
+            // foreach($products as $product){
+            //     $product->delete();
+            // }
+
+        // Method (2) -> good practice
+            // $category = Category::findOrFail($id);
+            // if($category->product()->count() == 0){
+            //     return back();
+            // }
+            // else{
+            //     $category->product()->delete();
+            // }
+
+        // Method (3) -> best practice
+            $category = Category::findOrFail($id);
+            $category->product()->delete();
 
         return redirect('/categories')
             ->with('products_in_category_deleted_successfully', "All the products for category ($category->title) were successfully deleted!");
@@ -128,12 +158,22 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $products = Product::where('category_id', $category->id)->get();
-        foreach($products as $product){
-            $product->delete();
-        }
-        $category->delete();
+        // Method (1) -> poor practice
+            // $category = Category::findOrFail($id);
+            // $products = \App\Models\Product::where('category_id', $category->id)->get();
+            // foreach($products as $product){
+            //     $product->delete();
+            // }
+            // $category->delete();
+
+        // Method (2) -> good practice
+            // $category = Category::findOrFail($id);
+            // $category->product()->delete();
+            // $category->delete();
+
+        // Method (3) -> best practice (in this case when the category is deleted, then its all products will be deleted because of the delete on cascade in products migration)
+            $category = Category::findOrFail($id);
+            $category->delete();
 
         return redirect('/categories')
             ->with('category_deleted_successfully', "The category ($category->title) with ID ($category->id) was successfully deleted!");

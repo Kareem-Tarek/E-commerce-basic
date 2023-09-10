@@ -27,7 +27,7 @@
                       <p class="card-text">
                         {{$rating->description ?? 'NULL'}}
                         <hr>
-                        Created At {{$rating->created_at}}
+                        Created At: {{$rating->created_at}}
                        </p>
                       <a href="{{/* route('ratings.show') , $rating->id */ '#'}}"
                         class="btn btn-primary">show</a>

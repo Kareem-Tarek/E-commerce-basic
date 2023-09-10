@@ -5,8 +5,14 @@
     <div class="row">
         <h1 class="mb-3"><u>All Categories</u></h1><br/>
         <p>
+            {{-- start => Same Category Attributes --}}
+            @if(session()->has('category_same_all_attributes'))
+                <div class="alert alert-warning text-center mx-auto" style="width: 55%; margin-top: 3%;">
+                    {{ session()->get('category_same_all_attributes') }}
+                </div>
+            {{-- end => Same Category Attributes --}}
             {{-- start => Update Category --}}
-            @if(session()->has('successful_category_title_updated'))
+            @elseif(session()->has('successful_category_title_updated'))
                 <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
                     {{ session()->get('successful_category_title_updated') }}
                 </div>
@@ -14,9 +20,9 @@
                 <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
                     {{ session()->get('successful_category_description_updated') }}
                 </div>
-            @elseif(session()->has('successful_category_updated'))
+            @elseif(session()->has('successful_category_all_attributes_updated'))
                 <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
-                    {{ session()->get('successful_category_updated') }}
+                    {{ session()->get('successful_category_all_attributes_updated') }}
                 </div>
             {{-- end => Update Category --}}
             {{-- start => Clear Category's Products --}}
@@ -34,17 +40,17 @@
             @endif
         </p>
         @foreach ($categories as $category)
-            <div class="my-2 col-lg-4 col-md-6 col-sm-12">
+            <div class="my-2 col-lg-6 col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="card-title">
-                        ID: {{$category->id}} <br> {{$category->title}}
-                      </h5>
+                        <h5 class="card-title">
+                            ID: {{$category->id}} <br> {{$category->title}}
+                        </h5>
                       <p class="card-text">
                         {{$category->description ?? 'NULL'}}
                         <hr>
-                        Created At {{$category->created_at}}
-                    </p>
+                        Created At: {{$category->created_at}}
+                        </p>
                         <div class="d-flex justify-content-center align-items-center text-center">
                             <form action="{{ route('categories.destroy',$category->id)}}" method="post">
                                 @csrf
@@ -52,11 +58,14 @@
                                 <a href="{{ route('categories.edit', $category->id)}}" class="btn btn-success btn-md p-1 text-white"><i class="fas fa-edit"></i> Edit</a>
                                 <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $category->title }}?');" type="submit" title="{{'Delete '."- ($category->title)"}}"><i class="fa-solid fa-trash"></i> Delete </button>
                             </form>
-                            <form action="{{ route('categories.clear', $category->id)}}" method="post" class="p-1">
-                                @csrf
-                                @method("DELETE")
-                                <button class="btn btn-secondary btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete all the products within - {{ $category->title }}?');" type="submit"><i class="fas fa-trash-alt"></i> Clear</a>
-                            </form>
+                            @if($category->productCount() != 0)
+                                <form action="{{ route('categories.clear', $category->id)}}" method="post" class="p-1">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button class="btn btn-secondary btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete all the products within - {{ $category->title }}?');" type="submit"><i class="fas fa-trash-alt"></i> Clear Products</button>
+                                </form>
+                                <a href="{{ route('categories.show', $category->id) }}" class="btn btn-warning btn-md p-1 text-dark border-2 border-dark"><i class="far fa-clone"></i> Show Products</a>
+                            @endif
                         </div>
                     </div>
                     </div>

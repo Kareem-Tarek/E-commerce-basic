@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -49,14 +50,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
-
-        if($product == null){
-            return '404';
-        }
-        else{
-            return view('pages.products.show' , compact('product'));
-        }
+        $product  = Product::findOrFail($id);
+        return view('pages.products.show' , compact('product'));
     }
 
     /**

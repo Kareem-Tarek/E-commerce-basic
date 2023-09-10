@@ -16,18 +16,14 @@ use App\Http\Controllers\ContactController;
 |
 */
 
-// Auth::routes();
-
-// Route::get('/', [PageController::class ,'home'])->name('home');
-// Route::get('/about', [PageController::class ,'about'])->name('about');
-// Route::get('/services', [PageController::class ,'services'])->name('services');
-// Route::get('/portfolio', [PageController::class ,'portfolio'])->name('portfolio');
+//----------------------------- home route -----------------------------//
 Route::get('/', [PageController::class,'index'])->name('index');
+//----------------------------- contact routes -----------------------------//
 Route::get('/contact', [PageController::class,'contact'])->name('contact');
 Route::post('/contact-submit', [ContactController::class,'store'])->name('contacts.store');
-
+//----------------------------- categories routes -----------------------------//
 Route::resource('/categories', CategoryController::class);
 Route::delete('/category/{id}', [CategoryController::class,'clear'])->name('categories.clear');
-
+//----------------------------- products routes -----------------------------//
 Route::resource('/products' , ProductController::class);
 
