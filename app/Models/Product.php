@@ -17,8 +17,8 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function rating(): \Illuminate\Database\Eloquent\Relations\belongsToMany
+    public function rating(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsToMany(Rating::class);
+        return $this->HasMany(Rating::class);
     }
 }
