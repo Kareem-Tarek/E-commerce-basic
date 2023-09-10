@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->enum('rating_level' , [1, 2, 3, 4, 5]);
             $table->string('customer_id')->nullable();
-            $table->foreignId('product_id')->constrained('products')->onDelete('set null');
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->string('product_name')->nullable();
             $table->timestamps();
         });

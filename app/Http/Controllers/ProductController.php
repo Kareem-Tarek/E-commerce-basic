@@ -79,9 +79,10 @@ class ProductController extends Controller
     {
         //Validate
             $request->validate([
-                'title'        => 'required|max255',
-                'price'        => 'nullabel|max255',
-                'description'  => 'nullable|max255'
+                'title'              => 'required|string|max:255',
+                'price'              => 'required|numeric',
+                'description'        => 'nullable|string|max:1020',
+                'available_quantity' => 'required|numeric',
             ]);
             //Update Products
             $product_old = Product::find($id);
@@ -121,6 +122,29 @@ class ProductController extends Controller
         $product = Product::findOrfail($id);
         $product->delete();
         return redirect('/products')->with('Product_deleted_successfully ' , "the product($product->title) with Id($product->id) was successfully deleted!");
-        
+
+    }
+
+    public function delete()
+    {
+        $products = Product::orderBy('id','desc')->onlyTrashed()->paginate(5);
+        $products_count = $products->count();
+        return view('pages.products.delete', compact('products', 'products_count'));
+
+    }
+
+    public function restore($id)
+    {
+        Product::withTrashed()->find($id)->restore();
+        $product = Product::findOrFail($id);
+        return redirect()->route('products.delete')
+            ->with('restored_product_message', "($product->name) has been Restored successfully.");
+    }
+
+    public function forceDelete($id)
+    {
+        Product::where('id', $id)->forceDelete();
+        return redirect()->route('products.forceDelete')
+            ->with('permanent_deleted_product_message', "The product has been permanently deleted successfully.");
     }
 }

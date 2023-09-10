@@ -18,11 +18,12 @@ class ProductFactory extends Factory
     {
         return [
             //
-            'title'       => fake()->title(),
-            'price'       => fake()->randomNumber(4 , true) ,
-            'description' => fake()->sentence(24),
-            'category_id' => fake()->numberBetween(1 , 3),
-            'updated_at'  => null,
+            'title'              => fake()->title(),
+            'price'              => fake()->randomNumber(4 , true) ,
+            'description'        => fake()->sentence(24),
+            'available_quantity' => fake()->randomNumber(2 , true),
+            'category_id'        => fake()->numberBetween(1 , 3),
+            'updated_at'         => null,
         ];
     }
 }

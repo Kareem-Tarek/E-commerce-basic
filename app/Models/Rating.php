@@ -15,6 +15,7 @@ class Rating extends Model
     //     return $this->belongsTo(User::class);
     // }
     protected $guarded = [];
+    
         public function product()
         {
             return $this->belongsTo(product::class );

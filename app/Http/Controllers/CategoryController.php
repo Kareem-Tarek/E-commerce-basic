@@ -87,7 +87,7 @@ class CategoryController extends Controller
         //Validate Category
         $request->validate([
             'title'       => 'required|max:255',
-            'description' => 'nullable|max:255',
+            'description' => 'nullable|max:1020',
         ]);
 
         //Update Category

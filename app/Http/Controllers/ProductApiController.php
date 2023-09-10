@@ -22,9 +22,10 @@ class ProductApiController extends Controller
             public function update(Request $request){
                 //            Validate Data
                 $request->validate([
-                    'title'       => 'required|max255',
-                    'price'       => 'nullable|max255',
-                    'description' => 'nullable|max255'
+                    'title'              => 'required|string|max:255',
+                    'price'              => 'required|numeric',
+                    'description'        => 'nullable|string|max:1020',
+                    'available_quantity' => 'required|numeric'
                 ]);
                     //Create All Data In Product Api
                 Product::create($request->all());
