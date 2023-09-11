@@ -9,17 +9,23 @@
                 <div class="card">
                     <h5 class="card-header shadow"> Price is {{$product->price}}</h5>
                     <div class="card-body">
-                    <h5 class="card-title">
-                        ID: {{$product->id}} <br> {{$product->title}}
-                      </h5>
-                      <p class="card-text">
-                        {{$product->description ?? 'NULL'}}
-                        <hr>
-                        Created At: {{$product->created_at}}
-                       </p>
-                      <a href="{{'/products/' . $product->id }}" class="btn btn-primary">show</a>
-                      <a href="{{ /* route('products.edit',$product->id) */ "#" }}" class="btn btn-success">Edit</a>
-                      <a href="#" class="btn btn-danger">delete</a>
+                        <h5 class="card-title">
+                            ID: {{$product->id}} <br> {{$product->title}}
+                        </h5>
+                        <p class="card-text">
+                            {{$product->description ?? 'NULL'}}
+                            <hr>
+                            Created At: {{$product->created_at}}
+                        </p>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <a href="{{'/products/' . $product->id }}" class="btn btn-primary border-2 border-dark"><i class="fa-solid fa-eye p-1"></i> Show</a>
+                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-success border-2 border-dark"><i class="fa-solid fa-edit p-1"></i> Edit</a>
+                                <button class="btn btn-danger border-2 border-dark" type="submit"><i class="fa-solid fa-trash-alt p-1"></i> Delete</button>
+                            </form>
+                        </div>
                     </div>
                   </div>
             </div>

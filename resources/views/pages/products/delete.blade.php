@@ -5,17 +5,13 @@
     <div class="row">
         <h1 class="mb-3"><u>All Deleted Products</u></h1><br/>
         <p>
-            @if(session()->has('restored_product_message'))
-                <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
-                    {{ session()->get('restored_product_message') }}
-                </div>
-            @elseif(session()->has('permanent_deleted_product_message'))
+            @if(session()->has('permanent_deleted_product_message'))
                 <div class="alert alert-primary text-center mx-auto" style="width: 55%; margin-top: 3%;">
                     {{ session()->get('permanent_deleted_product_message') }}
                 </div>
             @endif
         </p>
-        @foreach ($products as $product)
+        @forelse ($products as $product)
             <div class="my-2 col-lg-4 col-md-6 col-sm-12">
                 <div class="card">
                     <h5 class="card-header shadow"> Price is {{$product->price}}</h5>
@@ -36,18 +32,22 @@
 
                       <div class="d-flex justify-content-center align-items-center text-center">
                         <form action="{{ route('products.restore', $product->id) }}" method="get" class="p-1">
-                            <button class="btn btn-success border-2 border-dark btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to restore the product within ('.$product->title.')?');" type="submit"><i class="fas fa-trash-alt"></i> Restore</button>
+                            <button class="btn btn-success border-2 border-dark btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to restore the product within ('.$product->title.')?');" type="submit"><i class="fas fa-trash-restore-alt p-1"></i> Restore</button>
                         </form>
                         <form action="{{ route('products.forceDelete', $product->id) }}" method="post" class="p-1">
                             @csrf
                             @method("DELETE")
-                            <button class="btn btn-danger border-2 border-dark btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete the product ('.$product->title.')?');" type="submit"><i class="fas fa-trash-alt"></i> Permanent Delte</button>
+                            <button class="btn btn-danger border-2 border-dark btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete the product ('.$product->title.')?');" type="submit"><i class="fa-solid fa-ban p-1"></i> Permanent Delete</button>
                         </form>
                     </div>
                     </div>
                   </div>
             </div>
-        @endforeach
+            @empty
+            <div class="container mt-lg-4 d-flex justify-content-center text-center w-100">
+                <span class="alert alert-danger p-2 rounded text-dark">The trash is empty. There are no deleted products.</span>
+            </div>
+        @endforelse
         <div class="my-4">
             {{$products->links()}}
         </div>
