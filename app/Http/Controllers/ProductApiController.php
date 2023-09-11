@@ -14,29 +14,30 @@ class ProductApiController extends Controller
         public function getProduct($id){
     //Find Product By Id
             $product = Product::find($id);
-                return $product;
+            return $product;
         }
     //Save New Product
         public function storeProduct(Request $request){
     //Validate Product Api
-            $request->validate([
-                'price'                 =>'required|numeric',
-                'title'                 =>'required|string|max:255',
-                'acailable_quantity'    =>'required|numeric',
-                'description'           =>'nullable|string|max:1020',
-                'category_id'           =>'required|numeric'
-                ]);
-                    return Product::create($request->all());
-            }
+        $request->validate([
+            'price'                 =>'required|numeric',
+            'title'                 =>'required|string|max:255',
+            'available_quantity'    =>'required|integer',
+            'description'           =>'nullable|string|max:1020',
+            'category_id'           =>'required|integer'
+            ]);
+                return Product::create($request->all());
+        }
     //Update Product Api
         public function updateProduct(Request $request , $id){
-            $product = Product::find($id);
-            $product->update($request->all());
+                $product = Product::find($id);
+                $product->update($request->all());
                 return $product;
-            }
+        }
     //delete Product Api
         public function deleteProduct($id){
             return product::destroy($id);
-            }
         }
+
+}
 

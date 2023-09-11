@@ -19,7 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Controller ProductApiController
+//CategoryApiController Controller
+
+
+//ProductApiController Controller
 //Get All Products
 Route::get('/products', [ProductApiController::class ,'getProducts'] );
 //get Single Product
@@ -27,6 +30,6 @@ Route::get('/products/{id}' , [ProductApiController::class , 'getProduct']);
 //Save New Api Product
 Route::post('/products' , [ProductApiController::class , 'storeProduct']);
 //update Product Api
-    Route::put('/products/{id}',[ProductApiController::class,'updateProduct']);
+Route::put('/products/{id}',[ProductApiController::class,'updateProduct']);
 //DELETE  Product Api
 Route::delete('/products/{id}', [ProductApiController::class , 'deleteProduct']);
