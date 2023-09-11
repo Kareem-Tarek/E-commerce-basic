@@ -10,14 +10,14 @@
                 <li class="nav-item"><a class="nav-link" href="http://localhost:8000/#portfolio">Portfolio</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route("categories.index") }}">Categories</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Products
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                      <li><a class="dropdown-item" href="{{ route("products.index") }}">All Products ({{ \App\Models\Product::all()->count() }})</a></li>
-                      <li><a class="dropdown-item" href="{{ route("products.delete") }}">Deleted Products ({{ \App\Models\Product::onlyTrashed()->count() }})</a></li>
-                    </ul>
-                  </li>
+                  <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Products
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                    <li><a class="dropdown-item" href="{{ route("products.index") }}">All Products ({{ \App\Models\Product::all()->count() }})</a></li>
+                    <li><a class="dropdown-item" href="{{ route("products.delete") }}">Deleted Products ({{ \App\Models\Product::onlyTrashed()->count() }})</a></li>
+                  </ul>
+              </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route("contact") }}">Contact</a></li>
             </ul>
         </div>
