@@ -19,14 +19,14 @@ class ProductApiController extends Controller
     //Save New Product
         public function storeProduct(Request $request){
     //Validate Product Api
-        $request->validate([
-            'price'                 =>'required|numeric',
-            'title'                 =>'required|string|max:255',
-            'available_quantity'    =>'required|integer',
-            'description'           =>'nullable|string|max:1020',
-            'category_id'           =>'required|integer'
+            $request->validate([
+                'title'              => 'required|string|max:255',
+                'description'        => 'nullable|string|max:1020',
+                'price'              => 'required|numeric',
+                'available_quantity' => 'required|integer',
+                'category_id'        => 'required|integer',
             ]);
-                return Product::create($request->all());
+            return Product::create($request->all());
         }
     //Update Product Api
         public function updateProduct(Request $request , $id){

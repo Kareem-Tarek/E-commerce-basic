@@ -80,8 +80,8 @@ class ProductController extends Controller
         //Validate
             $request->validate([
                 'title'              => 'required|string|max:255',
-                'price'              => 'required|numeric',
                 'description'        => 'nullable|string|max:1020',
+                'price'              => 'required|numeric',
                 'available_quantity' => 'required|integer',
                 'category_id'        => 'required|integer',
             ]);
