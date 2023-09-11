@@ -27,6 +27,6 @@ Route::delete('/category/{id}', [CategoryController::class,'clear'])->name('cate
 //----------------------------- products routes -----------------------------//
 Route::resource('/products' , ProductController::class);
 Route::get('/product/delete', [ProductController::class,'delete'])->name('products.delete');
-Route::get('/product/restore/{id}/', [ProductController::class, 'restore'])->name('products.restore');
-Route::delete('/product/forceDelete/{id}/', [ProductController::class, 'forceDelete'])->name('products.forceDelete');
+Route::get('/product/restore/{id}', [ProductController::class, 'restore'])->name('products.restore');
+Route::delete('/product/forceDelete/{id}', [ProductController::class, 'forceDelete'])->name('products.forceDelete');
 

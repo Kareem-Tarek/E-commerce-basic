@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Stmt\Return_;
+use App\Http\Controllers\CategoryApiController;
 use App\Http\Controllers\ProductApiController;
 /*
 |--------------------------------------------------------------------------
@@ -20,16 +21,27 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //CategoryApiController Controller
-
-
+//get All Categories
+Route::get('/categories', [CategoryApiController::class ,'getCategories'] );
+//save New Api Category (store)
+Route::post('/categories' , [CategoryApiController::class , 'storeCategory']);
+//update Category Api (update)
+Route::put('/categories/{id}',[CategoryApiController::class,'updateCategory']);
+//delete Category Api (destroy)
+Route::delete('/categories/{id}', [CategoryApiController::class , 'deleteCategory']);
+//------------------------------------------------------------------------------------//
 //ProductApiController Controller
-//Get All Products
+//get All Products
 Route::get('/products', [ProductApiController::class ,'getProducts'] );
 //get Single Product
 Route::get('/products/{id}' , [ProductApiController::class , 'getProduct']);
-//Save New Api Product
+//save New Api Product (store)
 Route::post('/products' , [ProductApiController::class , 'storeProduct']);
-//update Product Api
+//update Product Api (update)
 Route::put('/products/{id}',[ProductApiController::class,'updateProduct']);
-//DELETE  Product Api
+//delete Product Api (destroy)
 Route::delete('/products/{id}', [ProductApiController::class , 'deleteProduct']);
+//restore  Product Api (restore)
+Route::get('/product/restore/{id}', [ProductApiController::class , 'restoreProduct']);
+//force or permanent delete Product Api (forceDelete)
+Route::delete('/product/forceDelete/{id}', [ProductApiController::class , 'forceDeleteProduct']);
