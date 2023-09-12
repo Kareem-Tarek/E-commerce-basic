@@ -142,17 +142,19 @@ class ProductController extends Controller
 
     public function restore($id)
     {
-        $product = Product::withTrashed()->find($id)->restore();
-        // $product->updated_at = null;
-        // $product->save();
-        $restoredProduct = Product::findOrFail($id);
+        // $product = Product::withTrashed()->find($id)->restore();
+        $product = Product::withTrashed()->find($id);
+        $product->restore();
+        $product = Product::findOrFail($id);
+        $product->updated_at = null;
+        $product->save();
         return redirect()->route('products.index')
-            ->with('restored_product_message', "The product ($restoredProduct->id. $restoredProduct->title) has been Restored successfully.");
+            ->with('restored_product_message', "The product ($product->id. $product->title) has been Restored successfully.");
     }
 
     public function forceDelete($id)
     {
-        Product::where('id', $id)->forceDelete();
+        $forceDeleteProduct = Product::where('id', $id)->forceDelete();
         return redirect()->route('products.delete')
             ->with('permanent_deleted_product_message', "The product has been permanently deleted successfully.");
     }
