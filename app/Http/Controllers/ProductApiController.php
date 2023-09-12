@@ -9,13 +9,20 @@ class ProductApiController extends Controller
 {
     //get All Products Api
     public function getProducts(){
-        return Product::all();
+        $products = Product::all();
+        return response()->json($products);
+    }
+
+    //get All Deleted Products Api
+    public function getDeletedProducts(){
+        $AllDeletedProducts = Product::onlyTrashed()->get();
+        return response()->json($AllDeletedProducts);
     }
 
     //get Single Product
     public function getProduct($id){
-        $product = Product::find($id);
-        return $product;
+        $singleProduct = Product::find($id);
+        return response()->json($singleProduct);
     }
 
     //save New Product
@@ -28,29 +35,33 @@ class ProductApiController extends Controller
             'available_quantity' => 'required|integer',
             'category_id'        => 'required|integer',
         ]);
-        return Product::create($request->all());
+        $product = Product::create($request->all());
+        return response()->json($product);
     }
 
     //update Product Api
     public function updateProduct(Request $request , $id){
         $product = Product::find($id);
         $product->update($request->all());
-        return $product;
+        return response()->json($product);
     }
 
     //delete Product Api
     public function deleteProduct($id){
-        return Product::destroy($id);
+        $deleteProduct = Product::destroy($id);
+        return response()->json($deleteProduct);
     }
 
     //restore Product Api
     public function restoreProduct($id){
-        return Product::restore($id);
+        $restoreProduct = Product::withTrashed()->find($id)->restore();
+        return response()->json($restoreProduct);
     }
 
-    //forceDelete Product Api
+    // forceDelete Product Api
     public function forceDeleteProduct($id){
-        return Product::forceDelete($id);
+        $forceDeleteProduct = Product::where('id', $id)->forceDelete();
+        return response()->json($forceDeleteProduct);
     }
 
 }

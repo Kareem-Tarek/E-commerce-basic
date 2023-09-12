@@ -20,8 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//CategoryApiController Controller
-//get All Categories
+//-----> CategoryApiController Controller
+//get All Categories (index)
 Route::get('/categories', [CategoryApiController::class ,'getCategories'] );
 //save New Api Category (store)
 Route::post('/categories' , [CategoryApiController::class , 'storeCategory']);
@@ -29,11 +29,13 @@ Route::post('/categories' , [CategoryApiController::class , 'storeCategory']);
 Route::put('/categories/{id}',[CategoryApiController::class,'updateCategory']);
 //delete Category Api (destroy)
 Route::delete('/categories/{id}', [CategoryApiController::class , 'deleteCategory']);
-//------------------------------------------------------------------------------------//
-//ProductApiController Controller
-//get All Products
+//--------------------------------------------------------------------------------------------------------//
+//-----> ProductApiController Controller
+//get All Products (index)
 Route::get('/products', [ProductApiController::class ,'getProducts'] );
-//get Single Product
+//get All Deleted Products (delete)
+Route::get('/product/delete', [ProductApiController::class ,'getDeletedProducts'] );
+//get Single Product (show)
 Route::get('/products/{id}' , [ProductApiController::class , 'getProduct']);
 //save New Api Product (store)
 Route::post('/products' , [ProductApiController::class , 'storeProduct']);
@@ -44,4 +46,5 @@ Route::delete('/products/{id}', [ProductApiController::class , 'deleteProduct'])
 //restore  Product Api (restore)
 Route::get('/product/restore/{id}', [ProductApiController::class , 'restoreProduct']);
 //force or permanent delete Product Api (forceDelete)
-Route::delete('/product/forceDelete/{id}', [ProductApiController::class , 'forceDeleteProduct']);
+Route::any('/product/forceDelete/{id}', [ProductApiController::class , 'forceDeleteProduct']);
+//--------------------------------------------------------------------------------------------------------//

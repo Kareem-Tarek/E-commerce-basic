@@ -125,6 +125,8 @@ class ProductController extends Controller
         //
         $product = Product::findOrFail($id);
         $product->delete();
+        $product->updated_at = null;
+        $product->save();
         return redirect('/products')
             ->with('deleted_product_message', "The product ($product->id. $product->title) has been deleted & moved to trash successfully deleted.");
 
@@ -140,10 +142,12 @@ class ProductController extends Controller
 
     public function restore($id)
     {
-        Product::withTrashed()->find($id)->restore();
-        $product = Product::findOrFail($id);
+        $product = Product::withTrashed()->find($id)->restore();
+        // $product->updated_at = null;
+        // $product->save();
+        $restoredProduct = Product::findOrFail($id);
         return redirect()->route('products.index')
-            ->with('restored_product_message', "The product ($product->id. $product->title) has been Restored successfully.");
+            ->with('restored_product_message', "The product ($restoredProduct->id. $restoredProduct->title) has been Restored successfully.");
     }
 
     public function forceDelete($id)

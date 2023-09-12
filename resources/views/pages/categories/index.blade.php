@@ -27,13 +27,13 @@
             {{-- end => Update Category --}}
             {{-- start => Clear Category's Products --}}
             @elseif(session()->has('products_in_category_deleted_successfully'))
-                <div class="alert alert-primary text-center mx-auto" style="width: 55%; margin-top: 3%;">
+                <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
                     {{ session()->get('products_in_category_deleted_successfully') }}
                 </div>
             {{-- end => Clear Category's Products --}}
             {{-- start => Delete Category --}}
             @elseif(session()->has('category_deleted_successfully'))
-                <div class="alert alert-primary text-center mx-auto" style="width: 55%; margin-top: 3%;">
+                <div class="alert alert-success text-center mx-auto" style="width: 55%; margin-top: 3%;">
                     {{ session()->get('category_deleted_successfully') }}
                 </div>
             {{-- end => Delete Category --}}
