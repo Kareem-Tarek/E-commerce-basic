@@ -33,3 +33,5 @@ Route::get('/product/restore/{id}', [ProductController::class, 'restore'])->name
 Route::delete('/product/forceDelete/{id}', [ProductController::class, 'forceDelete'])->name('products.forceDelete');
 //----------------------------- Rantings routes -----------------------------//
 Route::get('/ratings' , [RatingController::class, 'index'])->name('ratings.index');
+Route::delete('/rating/{id}', [RatingController::class,'destroy'])->name('ratings.destroy');
+
