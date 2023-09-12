@@ -48,9 +48,6 @@ class ProductApiController extends Controller
 
     //delete Product Api
     public function deleteProduct($id){
-        // $deleteProduct = Product::destroy($id);
-        // $deleteProduct->updated_at = null;
-        // $deleteProduct->save();
         $deleteProduct = Product::findOrFail($id);
         $deleteProduct->delete();
         $deleteProduct->updated_at = null;
