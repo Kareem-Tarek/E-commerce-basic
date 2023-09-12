@@ -60,8 +60,14 @@ class ProductApiController extends Controller
 
     // forceDelete Product Api
     public function forceDeleteProduct($id){
-        $forceDeleteProduct = Product::where('id', $id)->forceDelete();
-        return response()->json($forceDeleteProduct);
+        $forceDeleteProduct = Product::where('id', $id)->whereNotNull('deleted_at');
+        if($forceDeleteProduct){
+            $forceDeleteProduct->forceDelete();
+            return response()->json($forceDeleteProduct);
+        }
+        else{
+            return response()->json();
+        }
     }
 
 }
