@@ -39,18 +39,15 @@ Route::get('/product/delete', [ProductApiController::class ,'getDeletedProducts'
 Route::get('/products/{id}' , [ProductApiController::class , 'getProduct']);
 //save New Api Product (store)
 Route::post('/products' , [ProductApiController::class , 'storeProduct']);
-<<<<<<< HEAD
-//update Product Api
-Route::put('/products/{id}',[ProductApiController::class,'updateProduct']);
-//DELETE  Product Api
-=======
 //update Product Api (update)
 Route::put('/products/{id}',[ProductApiController::class,'updateProduct']);
 //delete Product Api (destroy)
->>>>>>> c4fc827d7fa02f5841a32c7751347259ba84710e
 Route::delete('/products/{id}', [ProductApiController::class , 'deleteProduct']);
 //restore  Product Api (restore)
 Route::get('/product/restore/{id}', [ProductApiController::class , 'restoreProduct']);
 //force or permanent delete Product Api (forceDelete)
 Route::any('/product/forceDelete/{id}', [ProductApiController::class , 'forceDeleteProduct']);
 //--------------------------------------------------------------------------------------------------------//
+//-----> RatingApiController Controller
+//get All Ratings (index)
+Route::get('/ratings', [RatingApiController::class ,'getRatings'] );
