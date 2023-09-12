@@ -27,6 +27,6 @@ Route::get('/products/{id}' , [ProductApiController::class , 'getProduct']);
 //Save New Api Product
 Route::post('/products' , [ProductApiController::class , 'storeProduct']);
 //update Product Api
-    Route::put('/products/{id}',[ProductApiController::class,'updateProduct']);
+Route::put('/products/{id}',[ProductApiController::class,'updateProduct']);
 //DELETE  Product Api
 Route::delete('/products/{id}', [ProductApiController::class , 'deleteProduct']);
