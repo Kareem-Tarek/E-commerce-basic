@@ -7,10 +7,11 @@ use App\Models\Rating;
 
 class RatingController extends Controller
 {
-    public function store(){
-        //
-        
-
+    // Get All Ratings
+    public function index(){
+        // Get All Reting
+        $rating = Rating::all();
+        return view('pages.rating.index' , compact('rating'));
     }
 
 }

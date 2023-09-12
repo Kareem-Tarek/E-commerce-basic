@@ -48,3 +48,6 @@ Route::get('/product/restore/{id}', [ProductApiController::class , 'restoreProdu
 //force or permanent delete Product Api (forceDelete)
 Route::any('/product/forceDelete/{id}', [ProductApiController::class , 'forceDeleteProduct']);
 //--------------------------------------------------------------------------------------------------------//
+//-----> RatingApiController Controller
+//get All Ratings (index)
+Route::get('/ratings', [RatingApiController::class ,'getRatings'] );

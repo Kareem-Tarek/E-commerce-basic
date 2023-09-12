@@ -5,6 +5,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\RatingController;
+
 /*USE
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,4 +31,5 @@ Route::resource('/products' , ProductController::class);
 Route::get('/product/delete', [ProductController::class,'delete'])->name('products.delete');
 Route::get('/product/restore/{id}', [ProductController::class, 'restore'])->name('products.restore');
 Route::delete('/product/forceDelete/{id}', [ProductController::class, 'forceDelete'])->name('products.forceDelete');
-
+//----------------------------- Rantings routes -----------------------------//
+Route::get('/ratings' , [RatingController::class, 'index'])->name('ratings.index');
