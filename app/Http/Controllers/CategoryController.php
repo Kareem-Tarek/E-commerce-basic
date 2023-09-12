@@ -176,6 +176,6 @@ class CategoryController extends Controller
             $category->delete();
 
         return redirect('/categories')
-            ->with('category_deleted_successfully', "The category ($category->title) with ID ($category->id) was successfully deleted!");
+            ->with('category_deleted_successfully', "The category ($category->id. $category->title) and its products were successfully deleted!");
     }
 }

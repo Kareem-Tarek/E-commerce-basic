@@ -80,8 +80,8 @@ class ProductController extends Controller
         //Validate
             $request->validate([
                 'title'              => 'required|string|max:255',
-                'price'              => 'required|numeric',
                 'description'        => 'nullable|string|max:1020',
+                'price'              => 'required|numeric',
                 'available_quantity' => 'required|integer',
                 'category_id'        => 'required|integer',
             ]);
@@ -125,6 +125,8 @@ class ProductController extends Controller
         //
         $product = Product::findOrFail($id);
         $product->delete();
+        $product->updated_at = null;
+        $product->save();
         return redirect('/products')
             ->with('deleted_product_message', "The product ($product->id. $product->title) has been deleted & moved to trash successfully deleted.");
 
@@ -140,15 +142,19 @@ class ProductController extends Controller
 
     public function restore($id)
     {
-        Product::withTrashed()->find($id)->restore();
+        // $product = Product::withTrashed()->find($id)->restore();
+        $product = Product::withTrashed()->find($id);
+        $product->restore();
         $product = Product::findOrFail($id);
+        $product->updated_at = null;
+        $product->save();
         return redirect()->route('products.index')
             ->with('restored_product_message', "The product ($product->id. $product->title) has been Restored successfully.");
     }
 
     public function forceDelete($id)
     {
-        Product::where('id', $id)->forceDelete();
+        $forceDeleteProduct = Product::where('id', $id)->forceDelete();
         return redirect()->route('products.delete')
             ->with('permanent_deleted_product_message', "The product has been permanently deleted successfully.");
     }

@@ -14,8 +14,8 @@
                       Products
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                      <li><a class="dropdown-item" href="{{ route("products.index") }}">All Products ({{ \App\Models\Product::all()->count() }})</a></li>
-                      <li><a class="dropdown-item" href="{{ route("products.delete") }}">Deleted Products ({{ \App\Models\Product::onlyTrashed()->count() }})</a></li>
+                      <li><a class="dropdown-item" href="{{ route("products.index") }}">All Products <b>({{ \App\Models\Product::all()->count() }})</b></a></li>
+                      <li><a class="dropdown-item" href="{{ route("products.delete") }}">Deleted Products <b>({{ \App\Models\Product::onlyTrashed()->count() }})</b></a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route("contact") }}">Contact</a></li>

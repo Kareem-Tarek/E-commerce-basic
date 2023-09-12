@@ -6,7 +6,7 @@
         <h1 class="mb-3"><u>All Products</u></h1><br/>
         <p>
             @if(session()->has('deleted_product_message'))
-                <div class="alert alert-primary text-center mx-auto" style="width: 90%; margin-top: 3%;">
+                <div class="alert alert-success text-center mx-auto" style="width: 90%; margin-top: 3%;">
                     {{ session()->get('deleted_product_message') }} <a href="{{ route('products.delete') }}">Check Trashed Products</a>
                 </div>
             @elseif(session()->has('restored_product_message'))
