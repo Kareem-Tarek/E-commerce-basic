@@ -9,3 +9,7 @@
 - Run `php artisan key:generate`
 - Create database in mysql and then open the ".env" file and in line 14 change the database name to the one that you created in mysql
 - Run `php artisan migrate:fresh --seed` (this commannd is important to run. In order to migrate the tables from Laravel project to the DB server in mysql with a fake dummy data which is handled by the DB seeder from Laravel)
+- Run `php artisan serve` and wait for 5 to 10 seconds untl the server runs (this command will run the project on the localhost server with a default port 8000 like in the following "localhost:8000/")
+- Copy-paste it (localhost:8000/) in any browser URL then the project will be ready to use
+
+  Thank You <3.
