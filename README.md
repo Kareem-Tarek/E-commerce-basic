@@ -1,7 +1,7 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 ### E-Commerce Website (RESTful API)
-- Open your terminal in the project's directory
+- Open any terminal or command line in the project's directory
 - Run `git clone https://github.com/Kareem-Tarek/E-commerce-basic.git`
 - Run `cd E-commerce-basic`
 - Run `composer install` or `composer update`
